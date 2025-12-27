@@ -30,3 +30,8 @@
 
  <p>첫째 줄에 패턴을 출력하면 된다.</p>
 
+### 배운 점
+s = []
+for _ in range(size):
+    s.append(input())
+-> s = [input() for _ in range(size) 와 의미가 동일하다.
