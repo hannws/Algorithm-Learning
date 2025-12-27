@@ -38,4 +38,4 @@
 - while(size) .... size -= 1 보다는 for _ in range(size)를 사용하기
 - a \*\*b % c  vs  pow(a, b, c) : 전자는 a \*\*b를 수행한 후 c로 나누어 나머지를 구하고 후자는 모듈러를 이용해 중간 중간 작은수로 만들기에 메모리 사용량이 적다.
 - 모듈러란? 7 \*\* 3 % 5 -> 7^3mod(5) 라고 표현하고
-<p>result = 1, result == (result \* 7) %5, result == (result \* 7) %5, result == (result \* 7) %5 이 과정을 거쳐서 나머지를 계산하는 방식이다. 필요한 부분만 남기도 나머지 부분은 제거하는 방식이다.</p>
+<p>result = 1, result = (result \* 7) %5, result = (result \* 7) %5, result = (result \* 7) %5 이 과정을 거쳐서 나머지를 계산하는 방식이다. 필요한 부분만 남기도 나머지 부분은 제거하는 방식이다.</p>
