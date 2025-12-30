@@ -1,12 +1,14 @@
 x = int(input())
 y = int(input())
-if(x > 0 and y > 0):
-    print(1)
-elif(x > 0 and y < 0):
-    print(4)
-elif(x<0 and y < 0):
-    print(3)
-elif(x < 0 and y > 0):
-    print(2)
-else:
-    print("?")
+
+match (x > 0, y >0):
+    case(True, True):
+        print (1)
+    case(False, True):
+        print(2)
+    case(False, False):
+        print(3)
+    case(True, False):
+        print(4)
+    case _:
+        print("?")
