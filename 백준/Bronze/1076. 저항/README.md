@@ -92,10 +92,10 @@
 
 ### 배운점
 딕셔너리를 이용해서 코드를 간략화할 수 있다. 
-color_map = {
+- color_map = {
     "black": 0, "brown": 1, "red": 2, "orange": 3, "yellow": 4,
     "green": 5, "blue": 6, "violet": 7, "grey": 8, "white": 9
 }
-if n1 in color_map and n2 in color_map and n3 in color_map:
+- if n1 in color_map and n2 in color_map and n3 in color_map:
     result = (color_map[n1] * 10 + color_map[n2])*(10** color_map[n3])
     print(result)
