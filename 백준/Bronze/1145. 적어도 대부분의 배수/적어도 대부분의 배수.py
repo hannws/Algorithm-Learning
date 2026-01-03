@@ -1,4 +1,5 @@
-numbers, result = list(map(int, input().split())), 1
+numbers = list(map(int, input().split()))
+result = min(numbers)
 while True:
     cnt = 0
     for i in numbers:
