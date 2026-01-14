@@ -2,45 +2,37 @@ import sys
 input = sys.stdin.readline
 
 t = int(input())
+nums = [int(input()) for _ in range(t)]
+max_num = max(nums)
 
-special = [0]*100001
+is_prime = [True]*200001
+is_prime[0] = is_prime[1] = False
+
+for i in range(2, int(200000**0.5)+1):
+    if is_prime[i]:
+        for j in range(i*i, 200001, i):
+            is_prime[j] = False
+
+def solve(num):
+    if not is_prime[num+1]:
+        return False
+    
+    s = str(num)
+    for i in range(1, len(s)):
+        if not is_prime[int(s[:i])*int(s[i:])+1]:
+            return False
+    return True
+
+special = [0]*(max_num+1)
 special[1] = 1
 special[2] = 2
 special[3] = 2
 
-end = 3
+for i in range(4, max_num+1):
+    if solve(i):
+        special[i] = special[i-1]+1
+    else:
+        special[i] = special[i-1]
 
-def special_func(end, n):
-    while end < n:
-        if solve(end+1):
-            special[end+1] = special[end] + 1
-        else:
-            special[end+1] = special[end]
-        end += 1
-    return end
-
-def solve(num):
-    if not is_prime(num+1):
-        return False
-    num = str(num)
-    length = len(num)
-    if length >= 2:
-        for i in range(1, length):
-            test = int(num[:i])*int(num[i:])+1
-            if not is_prime(test):
-                return False
-    return True
-
-def is_prime(n):
-    if n == 0 or n == 1:
-        return False
-    
-    for i in range(2, int(n**0.5)+1):
-        if n%i == 0:
-            return False
-    return True
-
-for _ in range(t):
-    N = int(input())
-    end = special_func(end, N)
-    print(special[N])
+for n in nums:
+    print(special[n])
