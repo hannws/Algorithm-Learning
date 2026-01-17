@@ -1,38 +1,23 @@
 import sys
+import math
+
 input = sys.stdin.readline
-
-def maxmove(N):
-    if dp.get(N, 0):
-        return dp[N]
-    incr = 0
-    if N%2 == 0:
-        incr = N//2
-    else:
-        incr = N//2 + 1
-    dp[N] = dp[N-1] + incr
-    return dp[N]
-
 
 t = int(input())
 
-dp = {1:1, 2:2}
-
 for _ in range(t):
-    start, end = map(int, input().split())
-    dis = end - start
-    
-    success = False
+    x, y = map(int, input().split())
+    d = y - x
 
-    if dis == 1:
-        success = True
-        print(1)
-    elif dis == 2:
-        success = True
-        print(2)
+    n = int(math.sqrt(d))
 
-    move = 3
-    while not success:
-        if move <= dis <= maxmove(move):
-            print(move)
-            success = True
-        move += 1
+    # 이동횟수에 따른 거리의 증가는 제곱과 관련 있다.
+    # 2n-1 -> n*n , 2n -> n*(n+1), 2n+1 -> (n+1)*(n+1)
+    # 주어진 거리가 어떤 n*n <= dis <= (n+1)*(n+1) 에 포함되는지 판단 필요
+
+    if d == n * n:
+        print(2 * n - 1)
+    elif d <= n * (n + 1):
+        print(2 * n)
+    else:
+        print(2 * n + 1)
