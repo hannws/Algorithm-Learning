@@ -4,30 +4,16 @@ input = sys.stdin.readline
 N = int(input())
 score = [0] + [int(input()) for _ in range(N)]
 dp = [[0,0] for _ in range(N+1)]
-dp[N][1] = score[N]
 
+if N >= 1:
+    dp[1][0] = score[1]
 
-def dfs(idx, cnt):
+if N >= 2:
+    dp[2][0] = score[2]
+    dp[2][1] = score[2] + score[1]
 
-    if cnt==0:
-        graph = [0]
-    else:
-        graph = [0, 1]
+for i in range(3, N+1):
+    dp[i][0] = max(dp[i-2][1],dp[i-2][0]) + score[i]
+    dp[i][1] = dp[i-1][0] + score[i]
 
-    for i in graph:
-        nxt = idx-2+i
-        nct = 1-i
-        if nxt <= 0:
-            continue
-        
-        current = dp[idx][cnt] + score[nxt]
-        comp = dp[nxt][nct]
-
-        if current > comp:
-            dp[nxt][nct] = current
-            dfs(nxt, nct)
-            
-
-
-dfs(N, 1)
-print(max(map(max, dp)))
+print(max(dp[N][0], dp[N][1]))
