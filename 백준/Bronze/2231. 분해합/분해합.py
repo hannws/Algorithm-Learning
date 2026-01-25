@@ -2,21 +2,15 @@ import sys
 input = sys.stdin.readline
 
 x = int(input())
-num = 1
+length = len(str(x))
+num = max(1, x - 9*length)
 
 def splitmerge(N):
-    total = N
-    a = str(N)
+    return N+sum(map(int, str(N)))
 
-    for i in a:
-        total += int(i)
-    return total
-
-while True:
-    if num >= x:
-        print(0)
+answer = 0
+for i in range(num, x):
+    if splitmerge(i) == x:
+        answer = i
         break
-    if splitmerge(num) == x:
-        print(num)
-        break
-    num += 1
+print(answer)
