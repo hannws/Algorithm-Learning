@@ -5,16 +5,7 @@ N, r, c = map(int, input().split())
 
 def dfs(N, r, c):
     if N==1:
-        if r==1:
-            if c==1:
-                return 0
-            else:
-                return 1
-        else:
-            if c==1:
-                return 2
-            else:
-                return 3
+        return (r-1)*2 + (c-1)
     total = 0
     comp = 2**(N-1)
     if r > comp:
