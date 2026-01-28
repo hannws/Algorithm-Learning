@@ -8,21 +8,12 @@ int main() {
 	int N;
 	cin >> N;
 
-	if (N == 1) {
-		cout << 1 << endl;
+	int count = 1, range=1;
+	while (N > range) {
+		range += 6 * count;
+		count++;
 	}
-	else {
-		int i = 1;
-		while (true) {
-			int left = 3 * (i - 1) * i + 1;
-			int right = 3 * i * (i + 1) + 1;
 
-			if (left < N && N <= right) {
-				cout << i + 1;
-				break;
-			}
-			i++;
-		}
-	}
+	cout << count;
 	return 0;
 }
