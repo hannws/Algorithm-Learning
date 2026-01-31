@@ -9,31 +9,22 @@ int main() {
 	cin.tie(nullptr);
 
 	int M, N;
-	if (!(cin >> M >> N)) {
-		return 0;
-	}
-	
-	vector<int> nums;
-	int start = int(sqrt(M)) - 1;
-	int end = int(sqrt(N));
-	int total = 0;
+	cin >> M >> N;
 
+	int start = ceil(sqrt(M));
+	int end = floor(sqrt(N));
+
+	int sum = 0;
 	for (int i = start; i <= end; i++) {
-		if (i * i >= M && i * i <= N) {
-			nums.push_back(i * i);
-			total += i * i;
-		}
+		sum += i * i;
 	}
-	if (nums.empty()) {
+
+	if (sum == 0) {
 		cout << -1 << endl;
 	}
 	else {
-		cout << total << '\n';
-		cout << nums[0] << endl;
+		cout << sum << '\n';
+		cout << start * start << endl;
 	}
-	
-
 	return 0;
-
-
 }
