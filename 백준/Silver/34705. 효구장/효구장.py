@@ -3,17 +3,15 @@ input = sys.stdin.readline
 
 T = int(input())
 
-def backtrack(start):
-    if small <= sum(path) <= large:
+def backtrack(start, total):
+    if small <= total <= large:
         return True
-    
-    for i in range(start, 5):
-        path.append(weight[i])
+    elif total > large:
+        return False
 
-        if backtrack(i+1):
+    for i in range(start, 5):
+        if backtrack(i+1, total + weight[i]):
             return True
-        
-        path.pop()
 
     return False
 
@@ -24,7 +22,7 @@ for _ in range(T):
     weight = list(map(int, input().split()))
     path = []
 
-    if backtrack(0):
+    if backtrack(0, 0):
         print("YES")
     else:
         print("NO")
