@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <algorithm>
 using namespace std;
 
 
@@ -9,19 +10,14 @@ int main() {
 
 	int N;
 	cin >> N;
-	vector<int> arr(N,0);
+	vector<int> arr(N);
 	for (int i = 0; i < N; i++) {
 		cin >> arr[i];
 	}
 	int M;
 	cin >> M;
 
-	int result = 0;
-	for (int i = 0; i < N; i++) {
-		if (arr[i] == M) {
-			result += 1;
-		}
-	}
+	int result = count(arr.begin(), arr.end(), M);
 	cout << result << endl;
 	return 0;
 }
