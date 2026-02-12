@@ -1,6 +1,5 @@
 #include <iostream>
-#include <string>
-#include <unordered_map>
+#include <cctype>
 using namespace std;
 
 
@@ -8,15 +7,14 @@ int main() {
 	ios::sync_with_stdio(false);
 	cin.tie(nullptr);
 
-	string S;
+	char S;
 	cin >> S;
 
-	unordered_map<string, string> um = { {"N", "Naver D2"}, {"whale", "Naver Whale"} };
-
-	if (S == "n" || S == "N") {
-		cout << um["N"] << endl;
+	if (tolower(S) == 'n') {
+		cout << "Naver D2" << endl;
 	}
 	else
-		cout << um["whale"] << endl;
+		cout << "Naver Whale" << endl;
+
 	return 0;
 }
