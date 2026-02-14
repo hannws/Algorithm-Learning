@@ -10,22 +10,12 @@ if N == 1:
 
 min1 = min(dice)
 
-min2 = float('inf')
-for i in range(6):
-    for j in range(i+1, 6):
-        if i + j == 5:
-            continue
-        min2 = min(min2, dice[i] + dice[j])
+a = min(dice[0], dice[5])
+b = min(dice[1], dice[4])
+c = min(dice[2], dice[3])
 
-min3 = float('inf')
-for i in range(6):
-    for j in range(i+1, 6):
-        if i + j == 5:
-            continue
-        for k in range(j+1, 6):
-            if i+k == 5 or j+k == 5:
-                continue
-            min3 = min(min3, dice[i] + dice[j] + dice[k])
+min2 = min(a+b, a+c, b+c)
+min3 = a+b+c
 
 
 usemin1 = ((N-2)**2)*5 + (N-2)*4
