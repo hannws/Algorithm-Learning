@@ -3,40 +3,33 @@ input = sys.stdin.readline
 
 n = int(input())
 
-def get_prime_factors(n):
-    result = []
+def phi(x):
+    result = x
     p = 2
-
-    while p*p <= n:
-        if n%p == 0:
-            while n%p == 0:
-                n //= p
-            result.append(p)
-        p+=1
     
-    if n > 1:
-        result.append(n)
+    while p * p <= x:
+        if x % p == 0:
+            while x % p == 0:
+                x //= p
+            result -= result // p
+        p += 1
+    
+    if x > 1:
+        result -= result // x
+    
     return result
 
-test = sorted(get_prime_factors(n), reverse=True)
-curr = n
-result = 1
+divisors = []
+for i in range(1, int(n**0.5) + 1):
+    if n % i == 0:
+        divisors.append(i)
+        if i != n // i:
+            divisors.append(n // i)
 
-for i in test:
-    if curr == 1:
-        break
-    if curr%(i*(i-1)) == 0:
-        k=1
-        curr //= i*(i-1)
+answer = float('inf')
 
-        div = i*i
-        while curr%div == 0:
-            curr //= div
-            k+=1
-        
-        result *= i**k
+for d in divisors:
+    if d * phi(d) == n:
+        answer = min(answer, d)
 
-if curr == 1:
-    print(result)
-else:
-    print(-1)
+print(answer if answer != float('inf') else -1)
