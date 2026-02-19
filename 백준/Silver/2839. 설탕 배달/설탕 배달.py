@@ -2,12 +2,11 @@ import sys
 input = sys.stdin.readline
 
 n = int(input())
-r = n//5
 
-while r+1:
-    if (n-5*r)%3 == 0:
-        print(r + (n-5*r)//3)
-        sys.exit()
-    r -= 1
-
-print(-1)
+for five in range(n//5, -1, -1):
+    remain = n-5*five
+    if remain%3 == 0:
+        print(five + remain//3)
+        break
+else:
+    print(-1)
