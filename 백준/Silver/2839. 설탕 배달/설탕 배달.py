@@ -3,10 +3,14 @@ input = sys.stdin.readline
 
 n = int(input())
 
-for five in range(n//5, -1, -1):
-    remain = n-5*five
-    if remain%3 == 0:
-        print(five + remain//3)
-        break
-else:
-    print(-1)
+INF = 10**9
+dp = [INF]*(n+1)
+dp[0] = 0
+
+for i in range(1, n+1):
+    if i-3>=0:
+        dp[i] = min(dp[i], dp[i-3]+1)
+    if i-5>=0:
+        dp[i] = min(dp[i], dp[i-5]+1)
+
+print(dp[n] if dp[n] != INF else -1)
