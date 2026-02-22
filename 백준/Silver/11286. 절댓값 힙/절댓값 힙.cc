@@ -2,6 +2,14 @@
 #include <queue>
 using namespace std;
 
+struct cmp {
+	bool operator()(int a, int b){
+		if (abs(a) == abs(b))
+			return a > b;
+		return abs(a) > abs(b);
+	}
+};
+
 int main() {
 	ios::sync_with_stdio(false);
 	cin.tie(nullptr);
@@ -9,13 +17,7 @@ int main() {
 	int N;
 	cin >> N;
 
-	auto cmp = [](int a, int b) {
-		if (abs(a) == abs(b))
-			return a > b;
-		return abs(a) > abs(b);
-		};
-
-	priority_queue<int, vector<int>, decltype(cmp)> pq(cmp);
+	priority_queue<int, vector<int>, cmp> pq;
 	for (int i = 0; i < N; i++) {
 		int num;
 		cin >> num;
