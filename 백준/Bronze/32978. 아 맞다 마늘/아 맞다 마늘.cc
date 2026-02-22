@@ -1,7 +1,5 @@
 #include <iostream>
-#include <vector>
-#include <string>
-#include <algorithm>
+#include <unordered_map>
 using namespace std;
 
 int main() {
@@ -11,17 +9,25 @@ int main() {
 	int N;
 	cin >> N;
 
-	vector<string> ingredient(N);
-	for (string& i : ingredient)
-		cin >> i;
+	unordered_map<string, int> m;
 
-	for (int i = 0; i < N - 1; i++) {
-		string includeingre;
-		cin >> includeingre;
-		ingredient.erase(remove(ingredient.begin(), ingredient.end(), includeingre), ingredient.end());
+	for (int i = 0; i < N; i++) {
+		string s;
+		cin >> s;
+		m[s]++;
 	}
 
-	for (string i : ingredient)
-		cout << i;
+	for (int i = 0; i < N - 1; i++) {
+		string s;
+		cin >> s;
+		m[s]--;
+	}
+
+	for (auto& p : m) {
+		if (p.second == 1) {
+			cout << p.first;
+			break;
+		}
+	}
 	return 0;
 }
